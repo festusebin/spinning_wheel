@@ -1,33 +1,23 @@
-// Importing React and useState hook, that allows us to use state in a functional component
-import React, { Fragment, useState } from "react";
-// import our css file
+import React, { useState } from "react";
 import "./App.css";
-// Import our spinning image
 import img from "./assets/images/roulletteTable.png";
 
-//
 const App = () => {
-  // Here we create our state and set it to an empty array
   const [currentMatrixData, setCurrentMatrixData] = useState([]);
-  // Array to hold initial data
   let matrixData = [];
-  // Array to hold final matrix data
   let newMatrix = [];
 
-  // This function simply generates a 2D Array matrix.
+  // This function simply generates a 2d Array matrix.
   const drawTable = () => {
-    // Define the number of rows and columns/cells that we want in the array matrix
     const totalRows = 5;
     const cellsInRow = 5;
-    // Create the Min and Max Variable
     const min = 10;
     const max = 49;
 
     // Creating rows
     // We need a nested for loop because we want to create a row, and create cells inside the row at the same time.
     for (let r = 0; r < totalRows; r++) {
-      // Creating a new 'row' array. This action will be performed on every iteration
-      let row = [];
+      let row = []; // Creating a new 'row' array. This action will be performed on every iteration as long as the above condition (r < totalRows) is true.
 
       // Create cells in row
       for (let c = 0; c < cellsInRow; c++) {
@@ -37,8 +27,8 @@ const App = () => {
         row.push(cell); // Finally, push the cells to the row array.
       }
 
-      // We're now pushing our rows to the matrixData array on every iteration of the outer loop
-      matrixData.push(row); // Possible output after every iteration is [23, 46, 45, 14, 19]
+      // We're now pushing our rows to the matrixData array on every iteration of the outter loop
+      matrixData.push(row); // Possible output after every iteration is -> [23, 46, 45, 14, 19]
 
       // At the end of the for loop iterations, we should end up with an array containing 5 other arrays - like
       // matrixData = [
@@ -60,13 +50,16 @@ const App = () => {
       matrixData = [];
     }
 
-    // We are setting our currentMatrixData state data to be the newMatrix value and forcing our component to re-render
+    // Here we are setting our currentMatrixData state data to be the newMatrix value.
+    // Another significance of this action is that we are forcing our component to re-render, which
+    // is important because we don't want old matrix data to be present everytime our function runs.
     setCurrentMatrixData(newMatrix);
+    console.log(newMatrix);
   }; // End Function
 
   // Here we are mapping through our state and creating elements from our currentMatrixData
-  const rows = currentMatrixData.map((item, i) => {
-    const entry = item.map((element, j) => {
+  let rows = currentMatrixData.map(function (item, i) {
+    let entry = item.map(function (element, j) {
       return <td key={j}>{element}</td>;
     });
     return <tr key={i}>{entry}</tr>;
@@ -74,24 +67,25 @@ const App = () => {
 
   return (
     // These <></> tags are react fragments. we use it when we don't want to use extra HTML elements to add extra nesting
-    <Fragment>
+    <>
       {/* This container contains the spinning table */}
       <div className="container">
-        <img src={img} alt="roulletteTable" onClick={() => drawTable() } />
+        <div onClick={() => drawTable()}>
+          <img src={img} alt="roulletteTable" />
+        </div>
       </div>
       {/* This is the left part of the screen(for desktop/tabs) that contains the table data */}
       <div className="left">
         <h1>Lucky Numbers</h1>
-        <div className="showTable">
+        <div id="showTable">
           <table>
-            <tbody>
-              {rows}
-            </tbody>
+            <tbody>{rows}</tbody>
           </table>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
 export default App;
+// And we're done in less than a hundred lines and no extra components or libraries 😜
