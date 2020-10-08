@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+#root {
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  display: flex;
+  color: white;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  flex-wrap: wrap;
+}
+
+#root > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+table {
+  width: 300px;
+  height: 300px;
+  font-size: 25px;
+  font-weight: 700;
+  border: 3px solid #3f3a70;
+}
+
+table td {
+  border: 3px solid #3f3a70;
+  background-color: #3f3a70;
+  padding: 20px;
+  transition: 0.4s;
+}
+
+table td:hover {
+  background-color: #555180;
+  cursor: pointer;
+}
+
+.container img {
+  user-select: none;
+  pointer-events: none;
+  min-width: 300px;
+  max-width: 100%;
+  animation: spin 10s linear forwards infinite;
+}
+
+.left {
+  flex-direction: column;
+}
+
+.left h1 {
+  margin-bottom: 20px;
+} 
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
