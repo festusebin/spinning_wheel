@@ -27,8 +27,8 @@ const App = () => {
         row.push(cell); // Finally, push the cells to the row array.
       }
 
-      // We're now pushing our rows to the matrixData array on every iteration of the outter loop
-      matrixData.push(row); // Possible output after every iteration is -> [23, 46, 45, 14, 19]
+      // We're now pushing our rows to the matrixData array on every iteration of the outer loop
+      matrixData.push(row); // Possible output after every iteration is [23, 46, 45, 14, 19]
 
       // At the end of the for loop iterations, we should end up with an array containing 5 other arrays - like
       // matrixData = [
@@ -52,7 +52,7 @@ const App = () => {
 
     // Here we are setting our currentMatrixData state data to be the newMatrix value.
     // Another significance of this action is that we are forcing our component to re-render, which
-    // is important because we don't want old matrix data to be present everytime our function runs.
+    // is important because we don't want old matrix data to be present every time our function runs.
     setCurrentMatrixData(newMatrix);
     console.log(newMatrix);
   }; // End Function
@@ -77,7 +77,7 @@ const App = () => {
       {/* This is the left part of the screen(for desktop/tabs) that contains the table data */}
       <div className="left">
         <h1>Lucky Numbers</h1>
-        <div id="showTable">
+        <div className="showTable">
           <table>
             <tbody>{rows}</tbody>
           </table>
@@ -88,4 +88,3 @@ const App = () => {
 };
 
 export default App;
-// And we're done in less than a hundred lines and no extra components or libraries 😜
